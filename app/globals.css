@@ -1,0 +1,168 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 220 40% 97%;
+    --foreground: 224 30% 12%;
+    --bg-grad-1: 250 80% 92%;
+    --bg-grad-2: 200 90% 92%;
+    --bg-grad-3: 30 90% 92%;
+    --card: 0 0% 100%;
+    --card-foreground: 224 30% 12%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 224 30% 12%;
+    --primary: 224 30% 12%;
+    --primary-foreground: 0 0% 100%;
+    --secondary: 220 20% 94%;
+    --secondary-foreground: 224 30% 12%;
+    --muted: 220 20% 94%;
+    --muted-foreground: 224 10% 42%;
+    --accent: 16 95% 60%;
+    --accent-foreground: 0 0% 100%;
+    --accent-soft: 16 95% 92%;
+    --destructive: 0 75% 55%;
+    --destructive-foreground: 0 0% 100%;
+    --border: 224 20% 88%;
+    --input: 224 20% 88%;
+    --ring: 224 30% 12%;
+    --glass-bg: 0 0% 100%;
+    --glass-bg-alpha: 0.55;
+    --glass-border: 0 0% 100%;
+    --glass-border-alpha: 0.6;
+    --glass-shadow: 224 50% 20%;
+    --radius: 1rem;
+  }
+
+  .dark {
+    --background: 224 40% 6%;
+    --foreground: 220 30% 96%;
+    --bg-grad-1: 260 60% 14%;
+    --bg-grad-2: 200 70% 12%;
+    --bg-grad-3: 16 70% 14%;
+    --card: 224 35% 10%;
+    --card-foreground: 220 30% 96%;
+    --popover: 224 35% 10%;
+    --popover-foreground: 220 30% 96%;
+    --primary: 0 0% 100%;
+    --primary-foreground: 224 40% 6%;
+    --secondary: 224 25% 16%;
+    --secondary-foreground: 220 30% 96%;
+    --muted: 224 25% 16%;
+    --muted-foreground: 220 15% 70%;
+    --accent: 16 95% 62%;
+    --accent-foreground: 224 40% 6%;
+    --accent-soft: 16 60% 22%;
+    --destructive: 0 70% 55%;
+    --destructive-foreground: 0 0% 100%;
+    --border: 224 25% 20%;
+    --input: 224 25% 20%;
+    --ring: 16 95% 62%;
+    --glass-bg: 224 35% 12%;
+    --glass-bg-alpha: 0.55;
+    --glass-border: 220 30% 90%;
+    --glass-border-alpha: 0.12;
+    --glass-shadow: 0 0% 0%;
+  }
+
+  * {
+    @apply border-border;
+  }
+
+  html,
+  body {
+    min-height: 100%;
+  }
+
+  body {
+    @apply text-foreground font-sans antialiased;
+    background-color: hsl(var(--background));
+    background-image:
+      radial-gradient(60% 50% at 10% 0%, hsl(var(--bg-grad-1) / 0.8), transparent 60%),
+      radial-gradient(50% 40% at 100% 10%, hsl(var(--bg-grad-2) / 0.7), transparent 60%),
+      radial-gradient(50% 40% at 50% 100%, hsl(var(--bg-grad-3) / 0.6), transparent 60%);
+    background-attachment: fixed;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4 {
+    @apply font-display tracking-tight;
+  }
+}
+
+@layer components {
+  .glass {
+    background: hsl(var(--glass-bg) / var(--glass-bg-alpha));
+    border: 1px solid hsl(var(--glass-border) / var(--glass-border-alpha));
+    backdrop-filter: blur(20px) saturate(140%);
+    -webkit-backdrop-filter: blur(20px) saturate(140%);
+    box-shadow:
+      0 1px 0 hsl(var(--glass-border) / 0.4) inset,
+      0 20px 50px -20px hsl(var(--glass-shadow) / 0.25);
+  }
+
+  .glass-strong {
+    background: hsl(var(--glass-bg) / 0.85);
+    border: 1px solid hsl(var(--glass-border) / 0.5);
+    backdrop-filter: blur(28px) saturate(160%);
+    -webkit-backdrop-filter: blur(28px) saturate(160%);
+    box-shadow: 0 30px 80px -30px hsl(var(--glass-shadow) / 0.35);
+  }
+
+  .hand {
+    @apply font-hand text-accent;
+  }
+
+  .scribble-underline {
+    position: relative;
+    display: inline-block;
+  }
+
+  .scribble-underline > svg {
+    position: absolute;
+    left: -4%;
+    right: -4%;
+    bottom: -0.35em;
+    width: 108%;
+    height: 0.5em;
+    pointer-events: none;
+  }
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+
+  @keyframes float-slow {
+    0%,
+    100% {
+      transform: translateY(0);
+    }
+    50% {
+      transform: translateY(-8px);
+    }
+  }
+
+  .animate-float-slow {
+    animation: float-slow 6s ease-in-out infinite;
+  }
+
+  @keyframes fade-up {
+    from {
+      opacity: 0;
+      transform: translateY(8px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  .animate-fade-up {
+    animation: fade-up 0.5s ease-out both;
+  }
+}
