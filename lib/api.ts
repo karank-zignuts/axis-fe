@@ -1,6 +1,7 @@
 import type { AuthResponse, ChecklistItem, TradingProfile, User } from '@/types';
 
-const API_URL = process.env.NEXT_PUBLIC_API_URL ?? 'http://localhost:4000';
+const rawApiUrl = process.env.NEXT_PUBLIC_API_URL ?? 'http://localhost:4000';
+const API_URL = rawApiUrl.startsWith('http') ? rawApiUrl : `https://${rawApiUrl}`;
 const TOKEN_KEY = 'axis-access-token';
 
 type RequestOptions = RequestInit & {
